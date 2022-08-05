@@ -9,9 +9,7 @@ const { db } = require("./models/User");
 //app
 const app = express();
 // db
-mongoose
-  .connect(process.env.DATABASE, {})
-  .then(() => console.log("DB Connected"));
+mongoose.connect(process.env.DATABASE).then(() => console.log("DB Connected"));
 //middlewares
 app.use(bodyParser.json());
 app.use(cors());
