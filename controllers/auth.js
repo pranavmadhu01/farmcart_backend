@@ -1,7 +1,31 @@
 const User = require("../models/User");
+const nodemailer = require(`nodemailer`);
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { createJWT } = require("../utils/auth");
+var transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD,
+  },
+});
+async function mailing(email, category) {
+  var mailOptions = {
+    from: process.env.EMAIL,
+    to: email,
+    subject: "Hey, you registered in farmcart!!",
+    text: `You registered as a ${category} in farmcart enjoy the journey of trading your products.`,
+  };
+  await transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log(`Email send to ${sendermail}
+      ${info.response}`);
+    }
+  });
+}
 const emailRegexp =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 exports.signup = (req, res, next) => {
@@ -68,12 +92,14 @@ exports.signup = (req, res, next) => {
             user.password = hash;
             user
               .save()
+              .then(mailing(email, category))
               .then((response) => {
                 res.status(200).json({
                   success: true,
                   result: response,
                 });
-              }).then()
+              })
+              .then()
               .catch((err) => {
                 res.status(500).json({
                   errors: [{ error: err }],
