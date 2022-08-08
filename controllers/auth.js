@@ -15,7 +15,14 @@ async function mailing(email, category) {
     from: process.env.EMAIL,
     to: email,
     subject: "Hey, you registered in farmcart!!",
-    text: `You registered as a ${category} in farmcart enjoy the journey of trading your products.`,
+    // text: `You registered as a ${category} in farmcart enjoy the journey of trading your products.`,
+    html: `Thank you for registering as a ${category} in farmcart<br> 
+    We have received your registration.<br> 
+    If you would like to buy or sell products again, please log in at <a href="www.farmcart.com">www.farmcart.com</a>.
+    <br> On your dashboard page, under “name”, click on the products which you are interested in to buy and/or sell and then click the submit button to complete the transaction. <br>
+    If you need any help, visit <a href="www.farmcart.com/helpinfo">www.farmcart.com/helpinfo</a>. <br>
+    If any changes to your contact information are required, you will need to connect via email of the concerned authorities, <i>Again thanking you for registering</i>.
+    If you have any queries, feel free to contact us at farmcart0@gmail.com`,
   };
   await transporter.sendMail(mailOptions, function (error, info) {
     if (error) {
