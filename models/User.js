@@ -11,6 +11,17 @@ let userSchema = new Schema(
       type: String,
       required: true,
     },
+    phone_no:{
+       type: Number,
+       required:true, 
+    },
+    category:{
+      type:String,
+      required:true,
+    },
+    cold_storage_license_no:{
+      type:String,
+    },
     password: {
       type: String,
       required: true,
