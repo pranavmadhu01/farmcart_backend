@@ -41,6 +41,7 @@ exports.signup = (req, res, next) => {
     email,
     phone_no,
     category,
+    cold_storage_name,
     cold_storage_license_no,
     password,
     password_confirmation,
@@ -60,9 +61,6 @@ exports.signup = (req, res, next) => {
   }
   if (!category) {
     errors.push({ category: "required" });
-  }
-  if (!cold_storage_license_no) {
-    errors.push({ cold_storage_license_no: "required" });
   }
   if (!password) {
     errors.push({ password: "required" });
@@ -90,6 +88,7 @@ exports.signup = (req, res, next) => {
           email: email,
           phone_no: phone_no,
           category: category,
+          cold_storage_name:cold_storage_name,
           cold_storage_license_no: cold_storage_license_no,
           password: password,
         });

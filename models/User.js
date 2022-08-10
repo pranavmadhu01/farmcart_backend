@@ -19,6 +19,9 @@ let userSchema = new Schema(
       type:String,
       required:true,
     },
+    cold_storage_name:{
+      type:String,
+    },
     cold_storage_license_no:{
       type:String,
     },
