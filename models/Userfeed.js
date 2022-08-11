@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 let userFeedSchema = new Schema(
   {
+    id: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -19,7 +23,6 @@ let userFeedSchema = new Schema(
       type: String,
       required: true,
     },
-    client_name: { type: String },
     product_name: { type: String },
     quantity: { type: Number },
     price: { type: Number },
