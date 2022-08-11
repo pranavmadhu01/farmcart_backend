@@ -9,6 +9,7 @@ const webscrapRoutes = require("./routes/webScrap");
 const getallcoldstoragesRoutes = require("./routes/getAllColdStorages");
 const getallfarmersRoutes = require("./routes/getAllFamers");
 const getallretailersRoutes = require("./routes/getAllRetailers");
+const userfeedRoutes = require("./routes/userfeed");
 
 const { db } = require("./models/User");
 //app
@@ -29,6 +30,7 @@ app.use("/api", webscrapRoutes);
 app.use("/api", getallcoldstoragesRoutes);
 app.use("/api", getallfarmersRoutes);
 app.use("/api", getallretailersRoutes);
+app.use("/api", userfeedRoutes);
 const port = process.env.PORT || 8000;
 
 app.listen(port, () => {

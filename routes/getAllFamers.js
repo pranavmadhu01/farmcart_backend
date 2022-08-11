@@ -3,13 +3,22 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/getallfarmers", (req, res) => {
-  User.find({category:"farmer"}, (err, users) => {
-    var userMap = {};
+  User.find({ category: "farmer" }, (err, users) => {
+    var userMap = [];
 
     users.forEach((user) => {
-      userMap[user._id] = user;
+      userMap.push({
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        phone_no: user.phone_no,
+        category: user.category,
+      });
     });
-    res.status(200).send(userMap);
+    res.status(200).send({
+      success: true,
+      result: userMap,
+    });
   });
 });
 
